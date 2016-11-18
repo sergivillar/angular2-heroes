@@ -11,8 +11,12 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test:/\.ts$/,
-				 loader: 'ts-loader'
+				test: /\.ts$/,
+				loaders: ['ts-loader', 'angular2-template-loader']
+			},
+			{
+				test: /\.html$/,
+				loader: 'html'
 			},
 			{
                 test: /\.css$/,
@@ -21,12 +25,12 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ['', '.js', '.ts', '.css']
+		extensions: ['', '.js', '.ts']
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html'
 		}),
-		new ExtractTextPlugin('./dist/style.css')
+		new ExtractTextPlugin('style.css')
 	]
 };
