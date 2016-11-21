@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var helpers = require('./config/helpers');
 
 module.exports = {
 	entry: ['./src/main.ts'],
@@ -20,8 +21,14 @@ module.exports = {
 			},
 			{
                 test: /\.css$/,
+                exclude: helpers.root('src', 'app'),
                 loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-            }
+            },
+			{
+				test: /\.css$/,
+				include: helpers.root('src', 'app'),
+				loader: 'raw'
+			}
 		]
 	},
 	resolve: {
